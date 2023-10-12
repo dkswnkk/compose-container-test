@@ -1,13 +1,11 @@
 package com.example.composecontainertest;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class ComposeContainerTestApplicationTests {
+class ComposeContainerTestApplicationTests extends IntegrationTest {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
