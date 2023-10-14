@@ -2,7 +2,6 @@ package com.example.composecontainertest;
 
 import com.redis.testcontainers.RedisContainer;
 import org.jetbrains.annotations.NotNull;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.utility.DockerImageName;
 
 import java.util.HashMap;
@@ -34,9 +34,16 @@ public class IntegrationTest {
 
     @BeforeAll
     public static void setupContainers() {
-        // 컨테이너 시작
+        // MySQL 컨테이너 시작 및 로그 메시지 대기
+        MYSQL_CONTAINER.waitingFor(Wait.forLogMessage(".*ready for connections.*", 1));
         MYSQL_CONTAINER.start();
+
+        // Redis 컨테이너 시작 및 로그 메시지 대기
+        REDIS_CONTAINER.waitingFor(Wait.forLogMessage(".*Ready to accept connections.*", 1));
         REDIS_CONTAINER.start();
+
+        // Kafka 컨테이너 시작 및 로그 메시지 대기
+        KAFKA_CONTAINER.waitingFor(Wait.forLogMessage(".*\\[KafkaServer id=.*\\] started.*", 1));
         KAFKA_CONTAINER.start();
     }
 
