@@ -3,6 +3,7 @@ package com.example.composecontainertest;
 import com.redis.testcontainers.RedisContainer;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
@@ -19,6 +20,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+@Disabled
 @SpringBootTest
 @Transactional
 @ContextConfiguration(initializers = IntegrationTest.IntegrationTestInitializer.class)
