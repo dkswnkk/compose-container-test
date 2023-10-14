@@ -27,6 +27,10 @@ dependencies {
 	// redis
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	testImplementation "com.redis.testcontainers:testcontainers-redis-junit:1.6.4"
+
+	// kafka
+	implementation("org.springframework.kafka:spring-kafka")
+	testImplementation("org.testcontainers:kafka:1.17.6")
 }
 
 tasks.named('test') {
